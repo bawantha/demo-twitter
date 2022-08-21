@@ -8,6 +8,10 @@ part 'tweets_record.g.dart';
 
 abstract class TweetsRecord
     implements Built<TweetsRecord, TweetsRecordBuilder> {
+  factory TweetsRecord([void Function(TweetsRecordBuilder) updates]) =
+  _$TweetsRecord;
+
+  TweetsRecord._();
   static Serializer<TweetsRecord> get serializer => _$tweetsRecordSerializer;
 
   String? get content;
@@ -32,7 +36,7 @@ abstract class TweetsRecord
     ..ownerEmail = ''
     ..isEditing = false;
 
-  static CollectionReference get collection =>
+  static CollectionReference  get collection =>
       FirebaseFirestore.instance.collection('tweets');
 
   static Stream<TweetsRecord> getDocument(DocumentReference ref) => ref
@@ -42,10 +46,6 @@ abstract class TweetsRecord
   static Future<TweetsRecord> getDocumentOnce(DocumentReference ref) => ref
       .get()
       .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
-
-  TweetsRecord._();
-  factory TweetsRecord([void Function(TweetsRecordBuilder) updates]) =
-  _$TweetsRecord;
 
   static TweetsRecord getDocumentFromData(
       Map<String, dynamic> data, DocumentReference reference) =>

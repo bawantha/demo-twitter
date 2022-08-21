@@ -1,12 +1,19 @@
 import 'dart:async';
 
 import 'package:built_value/built_value.dart';
+import 'package:glints_twiter_firebase/glints_twiter_firebase.dart';
 import 'package:glints_twiter_firebase/src/models/index.dart';
 import 'package:glints_twiter_firebase/src/models/serializers.dart';
 
 part 'users_record.g.dart';
 
 abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
+  factory UsersRecord([void Function(UsersRecordBuilder) updates]) =
+      _$UsersRecord;
+
+
+
+  UsersRecord._();
   static Serializer<UsersRecord> get serializer => _$usersRecordSerializer;
 
   String? get email;
@@ -29,12 +36,15 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   DocumentReference? get ffRef;
   DocumentReference get reference => ffRef!;
 
+
+
   static void _initializeBuilder(UsersRecordBuilder builder) => builder
     ..email = ''
     ..displayName = ''
     ..photoUrl = ''
     ..uid = ''
     ..phoneNumber = '';
+
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -47,15 +57,14 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
       .get()
       .then((s) => serializers.deserializeWith(serializer, serializedData(s))!);
 
-  UsersRecord._();
-  factory UsersRecord([void Function(UsersRecordBuilder) updates]) =
-  _$UsersRecord;
-
   static UsersRecord getDocumentFromData(
-      Map<String, dynamic> data, DocumentReference reference) =>
+          Map<String, dynamic> data, DocumentReference reference) =>
       serializers.deserializeWith(serializer,
           {...mapFromFirestore(data), kDocumentReferenceField: reference})!;
 }
+
+
+
 
 Map<String, dynamic> createUsersRecordData({
   String? email,
@@ -68,7 +77,7 @@ Map<String, dynamic> createUsersRecordData({
   final firestoreData = serializers.toFirestore(
     UsersRecord.serializer,
     UsersRecord(
-          (u) => u
+      (u) => u
         ..email = email
         ..displayName = displayName
         ..photoUrl = photoUrl

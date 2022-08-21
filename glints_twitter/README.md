@@ -34,6 +34,32 @@ $ flutter run --flavor production --target lib/main_production.dart
 _\*Glints Twitter works on iOS, Android, Web, and Windows._
 
 ---
+## Screenshots 🖼
+Login
+
+![](graphics/login.jpeg)
+
+Signup
+
+![](graphics/signup.jpeg)
+
+Home
+
+![](graphics/home.jpeg)
+
+Create
+
+![](graphics/create.jpeg)
+
+edit
+
+![](graphics/edit.jpeg)
+
+delete
+
+![](graphics/delete.jpeg)
+
+
 
 ## Running Tests 🧪
 

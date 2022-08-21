@@ -6,13 +6,16 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:glints_twiter_firebase/glints_twiter_firebase.dart';
 import 'package:glints_twitter/app/app.dart';
 import 'package:glints_twitter/tweet/tweet.dart';
 
 void main() {
   group('App', () {
     testWidgets('renders CounterPage', (tester) async {
-      await tester.pumpWidget(const App());
+      await tester.pumpWidget(App(
+        glintsTwitterAuth: GlintsTwitterAuth(),
+      ));
       expect(find.byType(TweetPage), findsOneWidget);
     });
   });

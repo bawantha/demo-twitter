@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 void main() {
   group('GlintsTwiterFirebase', () {
     test('can be instantiated', () {
-      expect(GlintsTwiterFirebase(), isNotNull);
+      expect(GlintsTwitterFirebase(), isNotNull);
     });
   });
 }

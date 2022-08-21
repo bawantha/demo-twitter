@@ -15,6 +15,15 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
+  google_fonts: 3.0.1
+  auto_size_text: 3.0.0
+  font_awesome_flutter: 10.1.0
+  equatable: ^2.0.5
+  page_transition: 2.0.9
+  flow_builder: 0.0.9
+  flutter_spinkit: 5.1.0
+  glints_twiter_firebase:
+    path: packages/glints_twiter_firebase
 
 dev_dependencies:
   bloc_test: ^9.0.3
